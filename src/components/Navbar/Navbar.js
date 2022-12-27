@@ -1,14 +1,16 @@
 import "./Navbar.css"
+import CartWidget from "../CartWidget/CartWidget"
 
 const Navbar = () => {
     return (
         <nav>
-            <h1>Ecommerce</h1>
+            <h1>E-commerce</h1>
             <div>
-                <button>Ejemplo1</button>
-                <button>Ejemplo2</button>
-                <button>Ejemplo3</button>
+                <button>Celulares</button>
+                <button>Computadoras</button>
+                <button>Tablets</button>
             </div>
+            <CartWidget/>
         </nav>
     )
 }

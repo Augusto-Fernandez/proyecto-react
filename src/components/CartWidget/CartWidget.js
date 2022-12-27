@@ -1,12 +1,12 @@
-import "./CartWidget.css"
+import "../Navbar/Navbar.css"
 
-const CarWidget = () =>{
+const CartWidget = () =>{
     return(
         <div>
             <img src="./images/shopping-cart.svg" alt="cart-widget"/>
-            0
+            <span>0</span>
         </div>
     )
 }
 
-export default CarWidget;
+export default CartWidget;

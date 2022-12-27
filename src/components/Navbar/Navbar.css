@@ -12,12 +12,12 @@ nav{
     height: 80px;
 }
 
-h1{
+nav h1{
     margin-top: 10px;
     padding-left: 20px;
 }
 
-button{
+nav button{
     margin-top: 30px;
     border-style: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -25,4 +25,15 @@ button{
     margin-left: 40px;
     background-color: #0080c0;
     font-size: 16px;
+}
+
+nav img{
+    margin: 20px 0px 0px 670px;
+    height: 35px;
+    width: 35px;
+}
+
+nav span{
+    margin: 13px;
+    padding: 50px 0px 30px;
 }
