@@ -1,9 +1,4 @@
-*{
-    padding: 0;
-    margin: 0;
-}
-
 .greeting{
     font-size: 80px;
-    color: aliceblue;
+    color: black;
 }
