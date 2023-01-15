@@ -1,6 +1,6 @@
 import "./ItemListContainer.css"
 import { useEffect, useState } from "react";
-import { getProducts } from "../../Stock";
+import { getProducts } from "../../asyncMock";
 import ItemList from "../ItemList/ItemList";
 /* <h1 className="greeting">{greeting}</h1> */
 

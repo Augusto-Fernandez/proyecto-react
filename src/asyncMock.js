@@ -30,7 +30,6 @@ const products = [
 
 
 export const getProducts = (categoryId) => {
-    console.log(categoryId)
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(products)
