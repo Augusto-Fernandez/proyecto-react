@@ -1,6 +1,7 @@
 import "./ItemListContainer.css"
 import { useEffect, useState } from "react";
 import { getProducts } from "../../Stock";
+import ItemList from "../ItemList/ItemList";
 /* <h1 className="greeting">{greeting}</h1> */
 
 const ItemListContainer = ({greeting}) =>{
@@ -19,7 +20,7 @@ const ItemListContainer = ({greeting}) =>{
     return(
         <div>
             <h1>Sample</h1>
-            {products.map(prod => <h4 key={prod.id}>{prod.name}</h4>)}
+            <ItemList products={products}/>
         </div>
     );
 }
