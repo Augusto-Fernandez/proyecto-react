@@ -2,7 +2,7 @@ import "../Navbar/Navbar.css"
 
 const CartWidget = () =>{
     return(
-        <div>
+        <div className="widget">
             <img src="./images/shopping-cart.svg" alt="cart-widget"/>
             <span>0</span>
         </div>

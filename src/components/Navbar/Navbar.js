@@ -4,11 +4,11 @@ import CartWidget from "../CartWidget/CartWidget"
 
 const Navbar = () => {
     return (
-        <nav>
-            <h1>E-commerce</h1>
+        <nav className="navbar">
+            <h1 className="titulo">E-commerce</h1>
             <div>
-                <Link to='/category/celular'>Celulares</Link>
-                <Link to='/category/tablet'>Tablets</Link>
+                <Link className="categorias" to='/category/celular'>Celulares</Link>
+                <Link className="categorias" to='/category/tablet'>Tablets</Link>
             </div>
             <CartWidget/>
         </nav>
