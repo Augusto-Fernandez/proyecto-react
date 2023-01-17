@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({greeting}) =>{
     const [products, setProducts] = useState([]);
-
+    const [loading, setLoading] = useState(true);
     const {categoryId} = useParams();
 
     useEffect(() =>{
@@ -19,7 +19,16 @@ const ItemListContainer = ({greeting}) =>{
             .catch(error => {
                 console.log(error);
             })
+            .finally(() =>{
+                setLoading(false)
+            });
     }, [categoryId]);
+
+    if(loading){
+        return(
+            <h1>Cargando</h1>
+        )
+    }
     
     return(
         <div>
