@@ -1,3 +1,4 @@
+import "./ItemDetail.css"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ItemCount from "../ItemCount/ItemCount";
@@ -11,10 +12,10 @@ const ItemDetail = ({id, name, img, price, category, description, stock}) => {
     
     return(
         <div>
-            <h1>{name}</h1>
+            <h1 className="item_name_detail">{name}</h1>
             <p>{category}</p>
-            <img src={img} alt={name}/>
-            <p>${price}</p>
+            <img className="item_detail_image" src={img} alt={name}/>
+            <p className="item_detail_price">${price}</p>
             <p>Descripción: {description}</p>
             {
                 quantity > 0 ? (

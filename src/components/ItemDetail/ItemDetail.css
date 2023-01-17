@@ -1,0 +1,16 @@
+.item_detail_name{
+    font-size: 16px;
+}
+
+.item_detail_image{
+    width: 300px;
+    height: 300px;
+}
+
+.item_detail_price{
+    font-size: 20px;
+}
+
+.item_detail_button{
+    background-color: #6aa4c2;
+}
