@@ -1,3 +1,4 @@
+/* 7) trae el mock*/
 const products = [
     { 
         id: '1', 
@@ -29,7 +30,7 @@ const products = [
 ]
 
 
-export const getProducts = (categoryId) => {
+export const getProducts = (categoryId) => { /*8) devuevle los productos del array products */
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(products)
@@ -37,7 +38,7 @@ export const getProducts = (categoryId) => {
     })
 }
 
-export const getProductsByCategory = (categoryId) => {
+export const getProductsByCategory = (categoryId) => { /*9) devuelve los productos filtrados por categoria */
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(products.filter(prod => prod.category === categoryId))
@@ -45,7 +46,7 @@ export const getProductsByCategory = (categoryId) => {
     })
 }
 
-export const getProductById = (id) => {
+export const getProductById = (id) => { /* 10) devuevle los productos filtrados por id*/
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(products.find(prod => prod.id === id))

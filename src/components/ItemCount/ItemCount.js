@@ -1,26 +1,29 @@
+/*39) crea ItemCount  */
 import { useState } from "react";
 
-const ItemCount = ({initial = 1 ,onAdd, stock}) =>{
-    const [count,setCount] = useState(initial)
+const ItemCount = ({initial = 1 ,onAdd, stock}) =>{ /*40) recibe como valor inicial 1*/ 
+/*44) recibe stock desde ItemDetail*/
+/*48) pasa onAdd como la funcion que tiene que recibir de ItemDetail */
+    const [count,setCount] = useState(initial) /*41) estado que guarda el valor del contador. Si recibe otro valor va a pisar el valor inicial que se le dió por props*/
 
     const increment = () =>{
-        if(count<stock){
+        if(count<stock){ /*45) permite sumar siempre que el valor del contador sea menor al stock */
             setCount(prev => prev +1)
         }
     }
 
     const decrement = () =>{
-        if(count>1){
+        if(count>1){ /*42) limita el valor a 1 para que no pase a 0 y números negativos*/
             setCount(prev => prev -1)
         }
     }
 
     return(
         <div>
-            <p>{count}</p>
+            <p>{count}</p> 
             <button onClick={increment}>+</button>
             <button onClick={decrement}>-</button>
-            <button onClick={() => onAdd(count)}>Agregar al carrito</button>
+            <button onClick={() => onAdd(count)}>Agregar al carrito</button> {/*49) ejecuta onAdd con el valor que recibe de count */}
         </div>
     )
 }

@@ -1,3 +1,4 @@
+/*6) crea CartWidget */
 import "../Navbar/Navbar.css"
 
 const CartWidget = () =>{
