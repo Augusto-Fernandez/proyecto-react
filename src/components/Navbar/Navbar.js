@@ -14,8 +14,8 @@ const Navbar = () => {
         <nav className="navbar">
             <h1 className="titulo" onClick={() => navigate('/')}>E-commerce</h1> {/* */}
             <div>
-                <Link className="categorias" to='/category/celular'>Celulares</Link> {/* 27) linkea los botones para que filtren categorias, este esa la url que se recibe en useParams */}
-                <Link className="categorias" to='/category/tablet'>Tablets</Link>
+                <Link className="categorias" to='/category/guitarra'>Guitarras</Link> {/* 27) linkea los botones para que filtren categorias, este esa la url que se recibe en useParams */}
+                <Link className="categorias" to='/category/bajo'>Bajos</Link>
             </div>
             <CartWidget qtty={totalQuantity}/> {/*72) se pasa el prop que necesita el CartWidget para visualizarlo */}
         </nav>
