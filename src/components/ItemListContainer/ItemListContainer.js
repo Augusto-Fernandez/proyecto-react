@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 /*import { getProducts, getProductsByCategory } from "../../asyncMock"; 88)*/
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
-import { getDocs,collection } from "firebase/firestore";
+import { getDocs,collection, query, where } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseConfig";
-import { async } from "@firebase/util";
 
 const ItemListContainer = ({greeting}) =>{ /* 3) le da el prop para el greeting */
     const [products, setProducts] = useState([]); /*15) este estado almacena la array de productos. El products corresponde al ItemList del JSX */
@@ -29,11 +28,15 @@ const ItemListContainer = ({greeting}) =>{ /* 3) le da el prop para el greeting 
                     setLoading(false)
                 }); 
         */
-       (async() => { /*93) pone todo dentro de esta funcion porque no se puede retornar una promesa a useEffect. Al tener doble parentesis indica que es una función que se auto llama. Se le puede poner async porque no se va a guardar en el useEffect*/
+       (async() => { /*93) pone todo dentro de esta funcion porque no se puede retornar una promesa a useEffect. Al tener doble parentesis indica que es una función que se auto llama. Se le puede poner async porque no se va a guardar en el useEffect. EN CLASE LO HACE DISTINTO, USA GETDOCS() Y THEN()*/
             setLoading(true) /*89) esta función estaba dentro de la funcion del mock, la saca y la pone primera, lo cambió a true porque lo va a hacer false cuando se traiga los productos desde firebase*/
 
-            const productsRef = collection(db,'products') /*91) crea una referencia a la coleccion en la base de datos*/
+            /*const productsRef = collection(db,'products') 91) crea una referencia a la coleccion en la base de datos*/
 
+            const productsRef = categoryId /*A101) este función filtra por categoria*/
+                ? query(collection(db,'products'),where('category','==',categoryId)) /*A102) query toma una referencia a una colección, where trae los elementos con un campo en particular */
+                : collection(db,'products') /*A103) del caso contrario trae la referencia de la colleción completa */
+            
             try{
                 const snapshot = await getDocs(productsRef)/*90) funcion que trae los documentos en la coleccion products*/
                 /*92) obtiene la respuesta de getDocs y la hace asincrona porque hay que esperar la respuesta*/
