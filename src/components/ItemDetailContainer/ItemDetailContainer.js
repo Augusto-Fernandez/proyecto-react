@@ -1,8 +1,10 @@
 /*30) crea ItemDetailContainer  */
+import { getDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductById } from "../../asyncMock";
+/*import { getProductById } from "../../asyncMock"; 99)*/
 import ItemDetail from "../ItemDetail/ItemDetail";
+import {db} from "../../services/firebase/firebaseConfig"
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState({}); /*34) No le pone [] porque va a almacenar un objeto {} */
@@ -10,9 +12,10 @@ const ItemDetailContainer = () => {
     const {productId} = useParams(); /*31) obtiene el producto de la url  */
 
     useEffect(() => {
-        getProductById(productId) /*32) usa el id del url*/
+        /*99) borra el mock
+            getProductById(productId) /*32) usa el id del url
             .then(product =>{
-                setProduct(product) /*35) setea el producto*/
+                setProduct(product) /*35) setea el producto
             })
             .catch(error => {
                 console.log(error)
@@ -20,6 +23,24 @@ const ItemDetailContainer = () => {
             .finally(() =>{
                 setLoading(false)
             });
+        */
+        (async() =>{ /*100) trae los productos de la misma manera que en ItemListContainer pero estaba vez usa getDoc porque trae un producto. Le indica productId para determinar que producto en la colección*/
+            const productRef = doc(db, 'products', productId)
+
+            try{
+                const snapshot = await getDoc(productRef)
+
+                const fields = snapshot.data()
+
+                const productAdapted = {id:snapshot.id, ...fields}
+
+                setProduct(productAdapted)
+            }catch(error){
+                console.log(error)
+            }finally{
+                setLoading(false)
+            }
+        })()
     }, [productId]); /*33) depende del estado useParams*/
 
     if(loading){
