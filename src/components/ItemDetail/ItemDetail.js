@@ -24,7 +24,7 @@ const ItemDetail = ({id, name, img, price, category, description, stock}) => {
             <p>Descripción: {description}</p>
             {
                 quantity > 0 ? (
-                    <Link>Terminar Compra</Link>
+                    <Link to='/checkout'>Terminar Compra</Link>
                 ):(
                     <ItemCount stock={stock} onAdd={handleOnAdd}/>
                 )
@@ -33,6 +33,7 @@ const ItemDetail = ({id, name, img, price, category, description, stock}) => {
     )
     /*43) pasa stock como prop al contador para poder evitar que se pidan mas productos de los que hay*/
     /*52) En caso de que quantity sea mayor que 0, manda al link de terminar compra o del caso contrario se renderiza el componente ItemCount*/
+    /*112A) le hice la redirección al checkout en Terminar compra*/
 }
 
 export default ItemDetail;

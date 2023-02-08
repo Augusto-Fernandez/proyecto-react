@@ -30,13 +30,25 @@ export const CartProvider = ({children}) => { /*57) se inyecta a los componentes
 
     const totalQuantity = GetTotalQuantity() /*68) almacena el valor de GetTotalQuantity en esta variable*/
 
+    const GetTotal = () => { /*109) crea función que calcula total*/
+        let total = 0;
+
+        cart.forEach(prod => {
+            total+=prod.qtty*prod.price
+        })
+
+        return total
+    }
+
+    const total = GetTotal() /*110) almacena el valor del total */
+
     const removeItem = (id) =>{
         const cartUpdated = cart.filter(prod => prod.id !== id) /*81) filtra todos los elementos que no corresponden al id*/
         setCart(cartUpdated) /*82) actualiza el carrito*/
     }
 
     return(
-        <CartContext.Provider value={{cart, addItem, totalQuantity, removeItem}}> {/*64) pasa la función como parametro*/} {/*69) comparte la cantidad total*/}{/*83) comparte la funcion para borrar productos*/}
+        <CartContext.Provider value={{cart, addItem, totalQuantity, total, removeItem}}> {/*64) pasa la función como parametro*/} {/*69) comparte la cantidad total*/}{/*83) comparte la funcion para borrar productos*/}
             {children} {/*56) envuelve a los componentes que se le quiere inyectar la dependencia */}
         </CartContext.Provider>
     )
