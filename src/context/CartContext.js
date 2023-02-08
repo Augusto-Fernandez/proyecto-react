@@ -47,8 +47,12 @@ export const CartProvider = ({children}) => { /*57) se inyecta a los componentes
         setCart(cartUpdated) /*82) actualiza el carrito*/
     }
 
+    const clearCart = () =>{ /*131) crea la función para limpiar el carrito una vez que se genero la orden*/
+        setCart([])
+    }
+
     return(
-        <CartContext.Provider value={{cart, addItem, totalQuantity, total, removeItem}}> {/*64) pasa la función como parametro*/} {/*69) comparte la cantidad total*/}{/*83) comparte la funcion para borrar productos*/}
+        <CartContext.Provider value={{cart, addItem, totalQuantity, total, removeItem, clearCart}}> {/*64) pasa la función como parametro*/} {/*69) comparte la cantidad total*/}{/*83) comparte la funcion para borrar productos*/}
             {children} {/*56) envuelve a los componentes que se le quiere inyectar la dependencia */}
         </CartContext.Provider>
     )
