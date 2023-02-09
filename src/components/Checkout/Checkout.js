@@ -3,6 +3,7 @@ import { useContext, useState } from "react"
 import { CartContext } from "../../context/CartContext"
 import {db} from "../../services/firebase/firebaseConfig"
 import {query, where, collection, documentId, getDocs, writeBatch, addDoc} from "firebase/firestore"
+import OrderList from "../OrderList/OrderList"
 
 const Checkout = () =>{
     const [loading, setLoading] = useState(false)
@@ -104,7 +105,9 @@ const Checkout = () =>{
 
     return(
         <div>
-            <h1>Confirmar compra</h1>
+            <h2>Detalle de compra</h2>
+            <OrderList cart={cart}/>
+            <h2>Confirmar compra</h2>
             <form>
                 <input type="text" value={name} placeholder="Ingresar nombre y apellido" onChange={(e) => setName(e.target.value)}/>
                 <input type="number" value={phone} placeholder="Ingresar teléfono" onChange={(e) => setPhone(e.target.value)}/>
