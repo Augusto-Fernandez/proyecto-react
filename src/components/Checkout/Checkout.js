@@ -8,15 +8,22 @@ const Checkout = () =>{
     const [loading, setLoading] = useState(false)
     const [orderId, setOrderId] = useState('')
     const {cart, total, clearCart} = useContext(CartContext) /*107) trae a cart porque es donde están guardados los productos*/
+
+    const [orderTotal, setOrderTotal] = useState('')
+
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
+    const [emailConfirm, setEmailConfirm] = useState('')
     
     const createOrder = async () =>{ /*114) crea funcion que hace ordenes y mete el objectOrder adentro para que se genere cuando se pida la orden*/
         setLoading(true)
         try{ /*130) le pidieron que haga un loading al generar la orden*/
             const objectOrder = { /*106) crea el objeto de la orden */
                 buyer:{ 
-                    name: 'El pedo 2011',
-                    phone: '1234567890',
-                    email:'pussydestroyer2014@gmail.com'
+                    name,
+                    phone,
+                    email
                 },
                 item: cart, /*108) pone los productos en la orden*/
                 total, /*111) recibe el valor del total de los productos sumados */
@@ -50,8 +57,8 @@ const Checkout = () =>{
                 const orderAdded = await addDoc(orderRef, objectOrder) /*129) agrega la nueva orden con el objeto que se hizo al principio de la función*/
                 const {id} =orderAdded /*obtiene el id de la orden */
                 setOrderId(id)/*133) guarda el id */
-                console.log(id)
                 clearCart() /*132) limpia el carrito*/
+                setOrderTotal(objectOrder.total)
             }else{
                 console.error('Hay productos fuera de stock')
             } 
@@ -72,6 +79,7 @@ const Checkout = () =>{
         return(
             <div>
                 <h1>El id de la compra es: {orderId}</h1>
+                <h1>Total: ${orderTotal}</h1>
             </div>
         )
     }
@@ -82,10 +90,28 @@ const Checkout = () =>{
         )
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (name === '' || email === '' || phone === '' || emailConfirm === '') {
+            alert("Todos los campos son obligatorios")
+        } else if (email !== emailConfirm) {
+            alert("Las direcciones de email no coinciden")
+        } else {
+            createOrder();
+        }
+
+    };
+
     return(
         <div>
-            <h1>Checkout</h1>
-            <button onClick={createOrder}>Generar Orden</button>
+            <h1>Confirmar compra</h1>
+            <form>
+                <input type="text" value={name} placeholder="Ingresar nombre y apellido" onChange={(e) => setName(e.target.value)}/>
+                <input type="number" value={phone} placeholder="Ingresar teléfono" onChange={(e) => setPhone(e.target.value)}/>
+                <input type="email" value={email} placeholder="Ingresar email" onChange={(e) => setEmail(e.target.value)}/>
+                <input type="email" value={emailConfirm} placeholder="Confirmar email" onChange={(e) => setEmailConfirm(e.target.value)}/>
+                <button onClick={handleSubmit} type="submit">Generar orden</button>
+            </form>
         </div>
     )
 }
