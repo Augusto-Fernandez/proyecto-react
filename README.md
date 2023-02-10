@@ -23,6 +23,6 @@ $ npm start
 
 https://user-images.githubusercontent.com/109426242/218209226-b78ab210-454c-4545-bb22-064e530f4f0f.mp4
 
-##Deploy
+## Deploy
 
 https://proyecto-react-dusky.vercel.app/
