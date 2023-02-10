@@ -7,6 +7,7 @@ import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import { getDocs,collection, query, where } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseConfig";
+import { createProductsAdapterFromFirestore } from "../../adapters/ProductsAdapter";
 
 const ItemListContainer = ({greeting}) =>{ /* 3) le da el prop para el greeting */
     const [products, setProducts] = useState([]); /*15) este estado almacena la array de productos. El products corresponde al ItemList del JSX */
@@ -41,9 +42,11 @@ const ItemListContainer = ({greeting}) =>{ /* 3) le da el prop para el greeting 
                 const snapshot = await getDocs(productsRef)/*90) funcion que trae los documentos en la coleccion products*/
                 /*92) obtiene la respuesta de getDocs y la hace asincrona porque hay que esperar la respuesta*/
                 const productsAdapted = snapshot.docs.map(doc =>{ /*94) hace un array con la respuesta de snapshot*/
-                    const fields = doc.data() /*95) obtiene los campos desde la data del documento*/
+                    /*
+                    const fields = doc.data() 95) obtiene los campos desde la data del documento
 
-                    return{id: doc.id, ...fields}/*96) devuelve el id de documento mas los campos*/
+                    return{id: doc.id, ...fields}96) devuelve el id de documento mas los campos*/
+                    return(createProductsAdapterFromFirestore(doc))
                 })
 
                 setProducts(productsAdapted) /*97) lo setea en el estado */
