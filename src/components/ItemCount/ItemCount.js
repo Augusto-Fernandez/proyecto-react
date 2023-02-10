@@ -20,10 +20,10 @@ const ItemCount = ({initial = 1 ,onAdd, stock}) =>{ /*40) recibe como valor inic
 
     return(
         <div>
-            <p>{count}</p> 
-            <button onClick={increment}>+</button>
-            <button onClick={decrement}>-</button>
-            <button onClick={() => onAdd(count)}>Agregar al carrito</button> {/*49) ejecuta onAdd con el valor que recibe de count */}
+            <p>Cantidad: {count}</p> 
+            <button style={{border:'none', borderRadius:'5px', backgroundColor:'#0080c0', height:'40px', width:'40px', color:'white', fontSize:'16px'}} onClick={increment}>+</button>
+            <button style={{border:'none', borderRadius:'5px', backgroundColor:'#0080c0', height:'40px', width:'40px', color:'white', fontSize:'16px'}} onClick={decrement}>-</button>
+            <button style={{border:'none', borderRadius:'5px', backgroundColor:'#0080c0', height:'40px', color:'white', fontSize:'16px'}} onClick={() => onAdd(count)}>Agregar al carrito</button> {/*49) ejecuta onAdd con el valor que recibe de count */}
         </div>
     )
 }

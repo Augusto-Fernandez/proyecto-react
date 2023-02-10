@@ -14,7 +14,7 @@ const Cart = () => {
             {/*113A) Hice el condicional para que vea si el carrito esta vacio o no*/}
             {
                 cart.length>0 ? (
-                    <Link to='/checkout'>Terminar Compra</Link>
+                    <Link style={{textDecoration:'none'}} to='/checkout'><button style={{border:'none', borderRadius:'5px', backgroundColor:'#0080c0', height:'40px', width:'150px', color:'white', fontSize:'16px'}}>Terminar Compra</button></Link>
                 ):(
                     <h2>No hay productos en carrito</h2>
                 )

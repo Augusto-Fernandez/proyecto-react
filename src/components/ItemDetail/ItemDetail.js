@@ -24,7 +24,7 @@ const ItemDetail = ({id, name, img, price, category, description, stock}) => {
             <p>Descripción: {description}</p>
             {
                 quantity > 0 ? (
-                    <Link to='/checkout'>Terminar Compra</Link>
+                    <Link style={{textDecoration:'none'}} to='/checkout'><button style={{border:'none', borderRadius:'5px', backgroundColor:'#0080c0', height:'40px', width:'150px', color:'white', fontSize:'16px'}}>Terminar Compra</button></Link>
                 ):(
                     <ItemCount stock={stock} onAdd={handleOnAdd}/>
                 )

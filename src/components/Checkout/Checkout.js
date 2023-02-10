@@ -108,12 +108,22 @@ const Checkout = () =>{
             <h2>Detalle de compra</h2>
             <OrderList cart={cart}/>
             <h2>Confirmar compra</h2>
-            <form>
-                <input type="text" value={name} placeholder="Ingresar nombre y apellido" onChange={(e) => setName(e.target.value)}/>
-                <input type="number" value={phone} placeholder="Ingresar teléfono" onChange={(e) => setPhone(e.target.value)}/>
-                <input type="email" value={email} placeholder="Ingresar email" onChange={(e) => setEmail(e.target.value)}/>
-                <input type="email" value={emailConfirm} placeholder="Confirmar email" onChange={(e) => setEmailConfirm(e.target.value)}/>
-                <button onClick={handleSubmit} type="submit">Generar orden</button>
+            <form style={{marginRight:'400px'}}>
+                <div>
+                    <input style={{width:'75%', margin:'10px 0px 10px 0px'}} type="text" value={name} placeholder="Ingresar nombre y apellido" onChange={(e) => setName(e.target.value)}/>
+                </div>
+                <div>
+                    <input style={{width:'75%', margin:'10px 0px 10px 0px'}} type="number" value={phone} placeholder="Ingresar teléfono" onChange={(e) => setPhone(e.target.value)}/>
+                </div>
+                <div>
+                    <input style={{width:'75%', margin:'10px 0px 10px 0px'}} type="email" value={email} placeholder="Ingresar email" onChange={(e) => setEmail(e.target.value)}/>
+                </div>
+                <div>
+                    <input style={{width:'75%', margin:'10px 0px 10px 0px'}} type="email" value={emailConfirm} placeholder="Confirmar email" onChange={(e) => setEmailConfirm(e.target.value)}/>
+                </div>
+                <div>
+                    <button style={{marginRight:'585px', border:'none', borderRadius:'5px', backgroundColor:'#0080c0', height:'40px', width:'150px', color:'white', fontSize:'16px'}} onClick={handleSubmit} type="submit">Generar orden</button>
+                </div>
             </form>
         </div>
     )
