@@ -1,18 +1,16 @@
-/*37) crea ItemDetail  */
 import "./ItemDetail.css"
-import { useState, useContext } from "react"; /*60) importa el hook que permite consumir el contexto */
+import { useState, useContext } from "react"; 
 import { Link } from "react-router-dom";
 import ItemCount from "../ItemCount/ItemCount";
 import { CartContext } from "../../context/CartContext";
 
 const ItemDetail = ({id, name, img, price, category, description, stock}) => {
-    const [quantity, setQuantity] = useState(0) /*47) en quantity guarda la cantidad de productos */
-    const {addItem} = useContext(CartContext) /*65) trae el contexto */
+    const [quantity, setQuantity] = useState(0) 
+    const {addItem} = useContext(CartContext) 
 
-    const handleOnAdd = (qtty) =>{ /*46) pone esta funcion fuera de ItemCount porque cuando cambia a Terminar compra se pierde el dato de la cantidad de productos*/
-    /*50) qtty va a ser el count que se pasa en ItemCount*/
-        setQuantity(qtty) /*51) setea la cantidad como el valor de count en ItemCount*/
-        addItem({id, name, qtty, price}) /*66) llama a la funcion del context y le pasa un objeto que es el producto que está esperando el carrito porque esto es lo que va a usar para los calculos */
+    const handleOnAdd = (qtty) =>{ 
+        setQuantity(qtty) 
+        addItem({id, name, qtty, price}) 
     }
     
     return(
@@ -31,9 +29,6 @@ const ItemDetail = ({id, name, img, price, category, description, stock}) => {
             }
         </div> 
     )
-    /*43) pasa stock como prop al contador para poder evitar que se pidan mas productos de los que hay*/
-    /*52) En caso de que quantity sea mayor que 0, manda al link de terminar compra o del caso contrario se renderiza el componente ItemCount*/
-    /*112A) le hice la redirección al checkout en Terminar compra*/
 }
 
 export default ItemDetail;

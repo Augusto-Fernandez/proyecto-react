@@ -7,9 +7,9 @@ import { CartProvider } from './context/CartContext';
 function App() {
   return (
     <div className="App"> 
-      <BrowserRouter> {/*11) hace que todo lo que esté dentro sea navegable y routeable */}
-        <CartProvider> {/*59) envuelte todo con CartProvider para que todos tengan acceso a los valores de cart */}
-          <Navbar/> {/* 28) Va por fuera de Routes porque se va a mostrar de forman incondicional y esta dentro de Browser para que se pueda navegar */}
+      <BrowserRouter> 
+        <CartProvider> 
+          <Navbar/> 
           <AppRouter/>
         </CartProvider>
       </BrowserRouter>

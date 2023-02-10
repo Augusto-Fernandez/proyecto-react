@@ -1,4 +1,3 @@
-/*85) Crea firebaseConfig*/
 import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore"
 
@@ -11,5 +10,5 @@ const firebaseConfig = {
   appId: "1:939892612270:web:165de1f92674ac5b70e13f"
 };
 
-const app = initializeApp(firebaseConfig); /*86) funcion que permite conectar con Firebase */
-export const db = getFirestore(app); /*87) funcion que conecta con la base de datos y la exporta para poder usarla despues*/
+const app = initializeApp(firebaseConfig); 
+export const db = getFirestore(app); 

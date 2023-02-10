@@ -1,4 +1,3 @@
-/*105) se crea checkout */
 import { useContext, useState } from "react"
 import { CartContext } from "../../context/CartContext"
 import {db} from "../../services/firebase/firebaseConfig"
@@ -8,7 +7,7 @@ import OrderList from "../OrderList/OrderList"
 const Checkout = () =>{
     const [loading, setLoading] = useState(false)
     const [orderId, setOrderId] = useState('')
-    const {cart, total, clearCart} = useContext(CartContext) /*107) trae a cart porque es donde están guardados los productos*/
+    const {cart, total, clearCart} = useContext(CartContext) 
 
     const [orderTotal, setOrderTotal] = useState('')
 
@@ -17,48 +16,48 @@ const Checkout = () =>{
     const [email, setEmail] = useState('')
     const [emailConfirm, setEmailConfirm] = useState('')
     
-    const createOrder = async () =>{ /*114) crea funcion que hace ordenes y mete el objectOrder adentro para que se genere cuando se pida la orden*/
+    const createOrder = async () =>{ 
         setLoading(true)
-        try{ /*130) le pidieron que haga un loading al generar la orden*/
-            const objectOrder = { /*106) crea el objeto de la orden */
+        try{ 
+            const objectOrder = { 
                 buyer:{ 
                     name,
                     phone,
                     email
                 },
-                item: cart, /*108) pone los productos en la orden*/
-                total, /*111) recibe el valor del total de los productos sumados */
+                item: cart, 
+                total, 
             }
 
-            const batch = writeBatch(db) /*123) acá es donde se guardan las funciones de actualización*/
+            const batch = writeBatch(db) 
 
-            const ids = cart.map(prod => prod.id) /*115) obtiene los id de firestore de los productos en carrito*/
-            const productsRef = query(collection(db, 'products'), where(documentId(), 'in', ids)) /*116) crea una refencia, con query hace una busqueda filtrada en la base de datos, con where filtra los productos que estén dentro de ids, con documentId() accede a los id de firestore para poder hacer el filtrado*/
+            const ids = cart.map(prod => prod.id) 
+            const productsRef = query(collection(db, 'products'), where(documentId(), 'in', ids)) 
 
-            const productsAddedFromCartFromFirestore = await getDocs(productsRef) /*117) hace la función asincrona que espera y recibe los datos de los productos filtrados en productsRef*/
-            const {docs} = productsAddedFromCartFromFirestore /*118) accede a los documentas de la respuesta*/
+            const productsAddedFromCartFromFirestore = await getDocs(productsRef) 
+            const {docs} = productsAddedFromCartFromFirestore 
 
             const outOfStock = []
 
             docs.forEach(doc =>{
                 const dataDoc = doc.data()
-                const stockDb = dataDoc.stock /*119) accede al stock de la base datos*/
+                const stockDb = dataDoc.stock 
 
-                const productsAddedToCart = cart.find(prod => prod.id === doc.id) /*120) valida que los productos en el carrito sean los mismo que los que se recibió por respuesta*/
-                const productsQuantity = productsAddedToCart.qtty /*121) cantidad de productos que agregó el usuario al carrito*/
-                if(stockDb>=productsQuantity){ /*122) si se cumple esta condición se actualiza el stock*/
-                    batch.update(doc.ref, {stock: stockDb-productsQuantity})/*124) actualiza el documento con el nuevo stock, se pasa ref que refencia la documento donde se está trabajando y despues le pasa el nuevo stock*/
+                const productsAddedToCart = cart.find(prod => prod.id === doc.id) 
+                const productsQuantity = productsAddedToCart.qtty 
+                if(stockDb>=productsQuantity){ 
+                    batch.update(doc.ref, {stock: stockDb-productsQuantity})
                 } else{
-                    outOfStock.push({id: doc.id, ...dataDoc}) /*125) en un array vacío almacena los productos sin stock, esto se puede usar para dar alguna alera de que no hay productos*/
+                    outOfStock.push({id: doc.id, ...dataDoc}) 
                 }
             })
-            if(outOfStock.length===0){ /*126) si no hay productos fuera de stock */
-                await batch.commit() /*127) actualiza los stock*/
-                const orderRef = collection(db, 'orders') /*128) una nueva colección*/
-                const orderAdded = await addDoc(orderRef, objectOrder) /*129) agrega la nueva orden con el objeto que se hizo al principio de la función*/
-                const {id} =orderAdded /*obtiene el id de la orden */
-                setOrderId(id)/*133) guarda el id */
-                clearCart() /*132) limpia el carrito*/
+            if(outOfStock.length===0){ 
+                await batch.commit() 
+                const orderRef = collection(db, 'orders') 
+                const orderAdded = await addDoc(orderRef, objectOrder) 
+                const {id} =orderAdded 
+                setOrderId(id)
+                clearCart() 
                 setOrderTotal(objectOrder.total)
             }else{
                 console.error('Hay productos fuera de stock')
@@ -76,7 +75,7 @@ const Checkout = () =>{
         )
     }
 
-    if(orderId){ /*134) da el id de la compra*/
+    if(orderId){ 
         return(
             <div>
                 <h1>El id de la compra es: {orderId}</h1>
@@ -85,7 +84,7 @@ const Checkout = () =>{
         )
     }
 
-    if(cart.length===0){ /*135) valida que haya productos en el carrito para generar orden*/
+    if(cart.length===0){ 
         return(
             <h1>No hay productos en el carrito</h1>
         )
